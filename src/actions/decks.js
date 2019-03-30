@@ -1,8 +1,8 @@
-import { getDecks, saveDeck } from '../storage';
+import { getDecks, saveDeck, saveCardToDeck } from '../storage';
 
 export const RECEIVE_DECKS = 'RECEIVE_DECKS';
 export const ADD_DECK = 'ADD_DECK';
-export const UPDATE_DECK = 'UPDATE_DECK';
+export const ADD_CARD_DECK = 'ADD_CARD_DECK';
 
 function receiveDecks(decks) {
   return {
@@ -34,4 +34,20 @@ export function handleAddDeck(deck) {
         dispatch(addDeck(deckResult));
       });
   };
+}
+
+function addCardDeck(deck) {
+  return {
+    type: ADD_CARD_DECK,
+    deck,
+  }
+}
+
+export function handleAddCardDeck(deckId, card) {
+  return async (dispatch) => {
+    return saveCardToDeck(deckId, card)
+      .then((deckResult) => {
+        dispatch(addCardDeck(deckResult))
+      });
+  }
 }

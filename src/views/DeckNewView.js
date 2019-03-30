@@ -75,6 +75,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const ConnectedDeckListView = connect(null, mapDispatchToProps)(DeckNewView);
+const ConnectedDeckNewView = connect(null, mapDispatchToProps)(DeckNewView);
 
-export default ConnectedDeckListView;
+export default ConnectedDeckNewView;
