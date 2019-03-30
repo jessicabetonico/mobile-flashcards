@@ -1,12 +1,17 @@
 import React from 'react';
-import { View, StatusBar } from 'react-native';
+import { Provider } from 'react-redux';
 
-import AppNavigator from './navigator';
+import createStore from './src/reducers';
+import AppNavigator from './src/navigator';
+
+const store = createStore();
 
 export default class App extends React.Component {
   render() {
     return (
-      <AppNavigator />
+      <Provider store={store}>
+        <AppNavigator />
+      </Provider>
     );
   }
 }

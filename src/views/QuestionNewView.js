@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 
-export default function DeckNewView({ onSubmit }) {
+export default function QuestionNewView({ onSubmit }) {
   return (
     <View style={styles.container}>
-      <Text>What is title of your new deck?</Text>
-      <TextInput placeholder="Deck Title"></TextInput>
+      <TextInput placeholder="Question"></TextInput>
+      <TextInput placeholder="Answer"></TextInput>
       <TouchableOpacity onPress={onSubmit}>
         <Text>Submit</Text>
       </TouchableOpacity>

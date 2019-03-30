@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import DeckListItemView from './DeckListItemView';
+import DeckItemView from './DeckItemView';
 
-export default function DeckDetailsView({ navigation, onAddCard, onStartQuizCard }) {
+export default function DeckDetailsView({ deckId, navigation, onAddCard, onStartQuizCard }) {
+  const deckIdParam = navigation.getParam('deckId', deckId);
   return (
     <View style={styles.container}>
-      <DeckListItemView />
+      <DeckItemView deckId={deckIdParam} />
       <TouchableOpacity onPress={() => navigation.navigate('QuestionNew')}>
         <Text>Add Card</Text>
       </TouchableOpacity>
