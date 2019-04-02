@@ -1,8 +1,11 @@
 import * as React from 'react';
-import { View, Text,StyleSheet } from 'react-native';
+import { View, Text,StyleSheet, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 
 export function DeckItemView({ deck }) {
+  if (!deck) {
+    return (<ActivityIndicator size="large" color="#0000ff" />);
+  }
   const { title, questions } = deck;
   return (
     <View style={styles.container}>

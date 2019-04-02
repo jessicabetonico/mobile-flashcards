@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 
 import DeckItemView from './DeckItemView';
@@ -15,6 +15,10 @@ function DeckDetailsView({ deck, deckId, navigation }) {
 
   function handleAddCard() {
     navigation.navigate('QuestionNew', { deckId: deckIdParam });
+  }
+
+  if (!deck) {
+    return (<ActivityIndicator size="large" color="#0000ff" />);
   }
 
   return (

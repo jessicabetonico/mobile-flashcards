@@ -18,7 +18,7 @@ class DeckNewView extends React.Component {
     const { title } = this.state;
     if (title) {
       addDeck({ title });
-      navigation.navigate('DeckList');
+      navigation.navigate('DeckDetails', { deckId: title });
     }
   }
   
