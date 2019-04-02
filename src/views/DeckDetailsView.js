@@ -1,19 +1,30 @@
 import * as React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
+
 import DeckItemView from './DeckItemView';
 
-export default function DeckDetailsView({ deckId, navigation, onAddCard, onStartQuizCard }) {
+function DeckDetailsView({ deck, deckId, navigation }) {
   const deckIdParam = navigation.getParam('deckId', deckId);
+
+  function handleStartQuiz() {
+    if (deck.questions.length > 0) {
+      navigation.navigate('Quiz', { deckId: deckIdParam });
+    }
+  }
+
+  function handleAddCard() {
+    navigation.navigate('QuestionNew', { deckId: deckIdParam });
+  }
+
   return (
     <View style={styles.container}>
       <DeckItemView deckId={deckIdParam} />
       <View>
-        <TouchableOpacity style={styles.addCardButton} onPress={() => navigation.navigate('QuestionNew', {
-          deckId: deckIdParam,
-        })}>
+        <TouchableOpacity style={styles.addCardButton} onPress={handleAddCard}>
           <Text style={styles.textAddCardButton}>Add Card</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.startQuizButton} onPress={() => navigation.navigate('Quiz')}>
+        <TouchableOpacity style={styles.startQuizButton} onPress={handleStartQuiz}>
           <Text style={styles.textStartQuizButton}>Start Quiz</Text>
         </TouchableOpacity>
       </View>
@@ -51,3 +62,14 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 });
+
+function mapStateToProps({ decks }, { navigation }) {
+  const deckId = navigation.getParam('deckId');
+  return {
+    deck: decks[deckId],
+  };
+}
+
+const ConnectedDeckDetailsView = connect(mapStateToProps)(DeckDetailsView);
+
+export default ConnectedDeckDetailsView;
