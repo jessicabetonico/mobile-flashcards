@@ -2,6 +2,8 @@ import * as React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
+import { handlePlayQuizToday } from '../utils/quiz-remember';
+
 class QuizView extends React.Component {
   state = {
     numberActiveQuestion: 0,
@@ -38,13 +40,18 @@ class QuizView extends React.Component {
         flipCard: false,
       }));
     } else if (this.isToShowScore()) {
-      this.setState(() => ({
-        scoreView: true,
-      }));
+      this.showScore();
     }
   }
 
-  isToShowScore() {
+  showScore = () => {
+    handlePlayQuizToday();
+    this.setState(() => ({
+      scoreView: true,
+    }));
+  }
+
+  isToShowScore = () => {
     const { numberActiveQuestion } = this.state;
     const { deck: { questions } } = this.props;
     return numberActiveQuestion === (questions.length - 1);

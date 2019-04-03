@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import { View, StyleSheet, FlatList, StatusBar } from 'react-native';
 import DeckListItemView from './DeckListItemView';
 import { handleReceiveDecks } from '../actions/decks';
+import { handleChangeTimeQuizRemember } from '../utils/quiz-remember';
 
 class DeckListView extends React.Component {
   componentDidMount() {
     const { receiveDecks } = this.props;
     receiveDecks();
+    handleChangeTimeQuizRemember();
   }
 
   render() {

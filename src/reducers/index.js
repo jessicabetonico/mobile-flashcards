@@ -2,7 +2,6 @@ import { createStore, combineReducers } from 'redux';
 
 import middleware from '../middleware';
 import decksReducer from './decks';
-import { handleAddDeck } from '../actions/decks';
 
 const rootReducer = combineReducers({
   decks: decksReducer,
